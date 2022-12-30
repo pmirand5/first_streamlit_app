@@ -1,6 +1,6 @@
 import streamlit
 import pandas
-import snowflake.connector
+
 
 streamlit.title('My Parents New Healthy Diner')
 
@@ -33,6 +33,8 @@ fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 # write your own comment - what does this do?
 streamlit.dataframe(fruityvice_normalized)
 
+streamlit.stop()
+import snowflake.connector
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("select * from fruit_load_list")
